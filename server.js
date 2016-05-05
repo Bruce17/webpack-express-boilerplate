@@ -9,6 +9,7 @@ const config = require('./webpack.config.js');
 
 const isDeveloping = process.env.NODE_ENV !== 'production';
 const port = isDeveloping ? 3000 : process.env.PORT;
+const host = process.env.HOST || '0.0.0.0';
 const app = express();
 
 if (isDeveloping) {
@@ -39,9 +40,9 @@ if (isDeveloping) {
   });
 }
 
-app.listen(port, '0.0.0.0', function onStart(err) {
+app.listen(port, host, function onStart(err) {
   if (err) {
     console.log(err);
   }
-  console.info('==> 🌎 Listening on port %s. Open up http://0.0.0.0:%s/ in your browser.', port, port);
+  console.info('==> Listening on port %s. Open up http://%s:%s/ in your browser.', port, host, port);
 });
